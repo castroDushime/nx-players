@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <link rel="icon" type="image/svg+xml" href="/vite.svg"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="description"
+          content="GAMES BUILT FOR INSTORE PLAYERS
+          Interactive and engaging games purpose built for retail
+          gaming stores.
+          We focus on bringing popular games which have been so far only
+                                    available to Online players to the retail world by purpose
+                                    building them for customers to interact with them with equipment
+                                    already available in traditional retail gaming stores.
+">
+  <meta name="keywords"
+        content="Aviator for retail,Aviator for shops,Offline Aviator,Crash Games,S Rocket,Crash games for retail,Crash games for shops,nx players">
+  <meta name="author" content="nx players">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href='https://fonts.googleapis.com/css?family=Khmer' rel='stylesheet'>
+    <link rel="icon" type="image/png" href="/favicon/favicon-96x96.png" sizes="96x96"/>
+    <link rel="icon" type="image/svg+xml" href="/favicon/favicon.svg"/>
+    <link rel="shortcut icon" href="/favicon/favicon.ico"/>
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png"/>
+    <link rel="manifest" href="/favicon/site.webmanifest"/>
+    <title>nx players</title>
+</head>
+<body>
+<div id="root"></div>
+<script type="module" src="/src/main.jsx"></script>
+<script src="https://code.jquery.com/jquery-2.2.0.min.js" type="text/javascript"></script>
+<script>
+    $(document).ready(function () {
+        const scrollToTopButton = document.getElementById('scrollToTopButton');
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 2) {
+                scrollToTopButton.style.display = 'flex';
+            } else {
+                scrollToTopButton.style.display = 'none';
+            }
+        });
+        scrollToTopButton.addEventListener('click', () => {
+            window.scrollTo({top: 0, behavior: 'smooth'})
+        });
+    });
+</script>
+</body>
+</html>
