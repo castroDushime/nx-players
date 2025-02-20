@@ -1,14 +1,12 @@
 import {Nav, Navbar} from "react-bootstrap";
 import {useEffect, useState} from "react";
 import Logo from '../../assets/logo.png'
-import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
-import Form from 'react-bootstrap/Form';
-import NavDropdown from 'react-bootstrap/NavDropdown';
-import Offcanvas from 'react-bootstrap/Offcanvas';
 import {BiMenu} from "react-icons/bi";
+import {useNavigate} from "react-router-dom";
 
 export const TopNav = () => {
+    const navigate = useNavigate();
     const [isScrolled, setIsScrolled] = useState(false);
     const currentUrl = window.location.href;
 
@@ -41,7 +39,7 @@ export const TopNav = () => {
                         <Nav className="justify-content-center flex-grow-1 pe-3">
                             {
                                 currentUrl.includes("game-details") &&
-                                <Nav.Link className="tw-text-white tw-font-extrabold tw-text-lg" href="/">Home</Nav.Link>
+                                <Nav.Link className="tw-text-white tw-font-extrabold tw-text-lg" onClick={() => navigate("/")}>Home</Nav.Link>
                             }
                             <Nav.Link className="tw-text-white tw-font-extrabold tw-text-lg" href="#about_us"> About us</Nav.Link>
                             <Nav.Link className="tw-text-white tw-font-extrabold tw-text-lg" href="#games">Our Games</Nav.Link>

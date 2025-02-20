@@ -1,8 +1,7 @@
-import {TopNav} from "../components/common/TopNav.jsx";
+
 import Container from "react-bootstrap/Container";
 import {Col, Row} from "react-bootstrap";
 import Game1 from "../assets/topImage.png";
-import Bg from "../assets/bg.png";
 import Bonus from "../assets/bonus.png";
 import Jackpot from "../assets/jackpot.png";
 import Vbg from "../assets/Vbg.png";
@@ -10,7 +9,6 @@ import Vbg from "../assets/Vbg.png";
 function GameDetails() {
     return (
         <div className="min-vh-100 d-flex flex-column justify-content-between">
-
             <div className=" my-4"  >
                 <div id="home" className="py-4" style={{
                     backgroundImage: `url(${Vbg})`,
@@ -18,7 +16,6 @@ function GameDetails() {
                     backgroundSize: "contain",
                     backgroundPosition: "center"
                 }}>
-                    <TopNav/>
                     <div className="text-white lg:tw-py-8">
                         <Container>
                             <Row className="align-items-end">
@@ -90,18 +87,6 @@ function GameDetails() {
                         </Row>
 
                     </Container>
-                </div>
-
-
-
-            </div>
-            <div id="contact_us" className=" tw-bg-primary bg-opacity-10">
-
-                {/*<hr className="tw-border-t-2 tw-border-gray-200"/>*/}
-                <div className="tw-flex tw-flex-col tw-items-center tw-justify-center tw-py-2">
-                    <p className="text-white tw-text-sm tw-font-semibold">
-                        © {new Date().getFullYear()} NX PLAYERS. All rights reserved.
-                    </p>
                 </div>
             </div>
         </div>

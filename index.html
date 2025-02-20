@@ -29,21 +29,6 @@
 <body>
 <div id="root"></div>
 <script type="module" src="/src/main.jsx"></script>
-<script src="https://code.jquery.com/jquery-2.2.0.min.js" type="text/javascript"></script>
-<script>
-    $(document).ready(function () {
-        const scrollToTopButton = document.getElementById('scrollToTopButton');
-        window.addEventListener('scroll', () => {
-            if (window.pageYOffset > 2) {
-                scrollToTopButton.style.display = 'flex';
-            } else {
-                scrollToTopButton.style.display = 'none';
-            }
-        });
-        scrollToTopButton.addEventListener('click', () => {
-            window.scrollTo({top: 0, behavior: 'smooth'})
-        });
-    });
-</script>
+<!--<script src="https://code.jquery.com/jquery-2.2.0.min.js" type="text/javascript"></script>-->
 </body>
 </html>

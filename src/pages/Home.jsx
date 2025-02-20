@@ -1,25 +1,42 @@
-import {TopNav} from "../components/common/TopNav.jsx";
-import {Col, Row} from "react-bootstrap";
+
+import {Alert, Col, Row} from "react-bootstrap";
 import Crash from "../assets/crash.png";
 import Game1 from "../assets/game1.png";
 import Container from "react-bootstrap/Container";
 import {useState} from "react";
 import Button from "react-bootstrap/Button";
 import {BiChevronRight} from "react-icons/bi";
-import {Link} from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 import "react-phone-input-2/lib/style.css";
 import PhoneInput from "react-phone-input-2";
+import axios from "axios";
 
 function Home() {
-    const [showDetails, setShowDetails] = useState(false);
-    const [phone, setPhone] = useState("");
+    const navigate = useNavigate();
+    const [email, setEmail] = useState('');
+    const [phone, setPhone] = useState('');
+    const [message, setMessage] = useState('');
+    const [response, setResponse] = useState('');
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        try {
+            const res = await axios.post('http://127.0.0.1:8080/send-email', {
+                email,
+                phone,
+                message,
+            });
+            setResponse(res.data.message);
+        } catch (error) {
+            setResponse(error.response.data.error);
+        }
+    };
     const handleShowDetails = () => {
-        setShowDetails(!showDetails);
+        navigate("/game-details");
     }
     return (
         <div className="min-vh-100">
             <div id="home" className="bg-primary pb-lg-5">
-                <TopNav/>
                 <div className="text-white tw-py-24 lg:py-32">
                     <h1 className="my-5 tw-text-center  tw-text-5xl tw-font-extrabold xl:tw-text-5xl  2xl:tw-text-6xl ">
                         <span className="text-success">GAMES</span> BUILT FOR INSTORE PLAYERS</h1>
@@ -93,10 +110,10 @@ function Home() {
                                         mouse or joystick.
                                     </p>
                                     <div className="">
-                                        <Link to="/game-details"
+                                        <Button onClick={handleShowDetails}
                                               className="w-full tw-bg-primary tw-cursor-pointer p-2 text-white text-decoration-none border-0 hover:tw-shadow-lg hover:tw-bg-gradient-to-r tw-from-primary tw-to-secondary  rounded-pill ">
                                             View Details <BiChevronRight/>
-                                        </Link>
+                                        </Button>
                                     </div>
                                 </div>
                             </div>
@@ -105,7 +122,7 @@ function Home() {
                 </Container>
 
             </div>
-            <div id="contact_us" className=" tw-bg-primary bg-opacity-10">
+            <div id="contact_us" className="border-bottom border-secondary tw-bg-primary bg-opacity-10">
                 <Container>
                     <Row className="align-items-center">
                         <Col lg={5}>
@@ -113,7 +130,7 @@ function Home() {
                                 <div className="text-white">
                                     <h5 className="text-3xl font-bold tracking-tight text-white dark:text-white">
                                         Contact Us </h5>
-                                    Ready to take your business to the next level? send us a message here and we'll reach out in no time!
+                                    Ready to take your business to the next level? send us a message here and we&#39;ll reach out in no time!
                                 </div>
 
                             </div>
@@ -121,14 +138,22 @@ function Home() {
                         <Col lg={7} className="justify-content-end d-lg-flex">
                             <Col lg={9}>
                                 <div className="my-4">
-                                    <form action="#">
+                                    <Alert show={response !== ''} variant="success" dismissible onClose={() => setResponse('')}>
+                                        {response}
+                                    </Alert>
+                                    <form onSubmit={handleSubmit}>
                                         <div className="mb-6 mt-3">
                                             <input placeholder="Enter your Email"
+                                                   type="email"
+                                                   value={email}
+                                                   onChange={(e) => setEmail(e.target.value)}
+                                                   required
                                                    className="mb-2 tw-py-2.5 form-control mb-2 block"/>
                                         </div>
                                         <div className="mb-2">
                                             <PhoneInput
                                                 country={"us"}
+                                                required
                                                 value={phone}
                                                 onChange={setPhone}
                                                 inputClass="tw-w-full border border-gray-300 rounded-3  tw-py-3 mb-3"
@@ -138,7 +163,10 @@ function Home() {
                                         </div>
                                         <div className="mb-6">
                                             <textarea id="message" name="message"
+                                                      value={message}
+                                                      onChange={(e) => setMessage(e.target.value)}
                                                       className='form-control tw-py-2.5 mb-3'
+                                                      required
                                                       placeholder="Your message..." rows={4}/>
                                         </div>
                                         <div className="mb-6">
@@ -152,12 +180,6 @@ function Home() {
                         </Col>
                     </Row>
                 </Container>
-                <hr className="tw-border-t-2 tw-border-gray-200"/>
-                <div className="tw-flex tw-flex-col tw-items-center tw-justify-center tw-py-2">
-                    <p className="text-white tw-text-sm tw-font-semibold">
-                        © {new Date().getFullYear()} nx players. All rights reserved.
-                    </p>
-                </div>
             </div>
 
         </div>
