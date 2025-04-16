@@ -10,6 +10,22 @@ export default defineConfig({
       },
     }),
   ],
+  server: {
+    fs: {
+      allow: ['.'], // allow serving files from project root
+    },
+  },
+  build: {
+    rollupOptions: {
+      external: [
+        // ignore non-js directories
+        '**/.git/**',
+      ],
+    },
+  },
+  optimizeDeps: {
+    exclude: ['.git'],
+  },
   resolve: {
     alias: {
       'path': 'path-browserify',

@@ -14,18 +14,18 @@ import axios from "axios";
 function Home() {
     const navigate = useNavigate();
     const [email, setEmail] = useState('');
-    const [phone, setPhone] = useState('');
+    const [name, setPhone] = useState('');
     const [message, setMessage] = useState('');
     const [response, setResponse] = useState('');
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const res = await axios.post('http://127.0.0.1:8080/send-email', {
+            const res = await axios.post('http://localhost:5000/contact', {
                 email,
-                phone,
+                name,
                 message,
-            });
+            },{ "Content-Type": "application/json" });
             setResponse(res.data.message);
         } catch (error) {
             setResponse(error.response.data.error);
@@ -154,7 +154,7 @@ function Home() {
                                             <PhoneInput
                                                 country={"us"}
                                                 required
-                                                value={phone}
+                                                value={name}
                                                 onChange={setPhone}
                                                 inputClass="tw-w-full border border-gray-300 rounded-3  tw-py-3 mb-3"
                                                 containerClass="w-full"
